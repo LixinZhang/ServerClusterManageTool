@@ -1,0 +1,105 @@
+$def with (args=None) 
+$:args["result"]
+
+<div id="navbar-example" class="navbar navbar-static">
+              <div class="navbar-inner">
+                <div class="container" style="width: auto;">
+                    <a class="brand" >Script Group:
+                        $if args["group"] != None :
+                            $args["group"]["val"].name
+                        $else :
+                            All Scripts
+                        </a>
+                  <ul class="nav pull-right">
+                    <li id="fat-menu" class="dropdown">
+                      <a href="#" id="drop3" role="button" class="dropdown-toggle text-info" data-toggle="dropdown">Choose Group<b class="caret"></b></a>
+                      <ul class="dropdown-menu" role="menu" aria-labelledby="drop3">
+                          $if args["group_list"] != None :
+                            $for group in args["group_list"] :
+                                <li><a tabindex="-1" href="/manage_script?group_id=$group.id">$group.name</a></li>
+                        <li class="divider"></li>
+                        <li><a tabindex="-1" href="/manage_script?group_id=0">All</a></li>
+                      </ul>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+          </div>
+<script>
+$$(function() {
+        $$("#sortable").sortable({
+		      stop:function(event,ui){
+		          $$(ui.item).show("highlight");
+            }
+		  });
+        $$("#sortable").disableSelection();
+        });
+    </script>
+$ current_group_id = 0
+$if args["group"]!= None :
+    $ current_group_id = args["group"]["val"].id
+$ style = ""
+$if current_group_id == None or current_group_id == 0 :
+    $ style = "style='display:none'"
+<table class="table table-hover" id="scripts_table">
+    <thead>
+        <tr>
+            <th>#
+            </th>
+            <th>Name</th>
+            <th>Desctiption</th>
+            <th>Containing Groups</th>
+            <th>
+                <form method="post" action="update_position" style="margin:0 0 0 0 ">
+                    <input type="hidden" name="current_group_id" value="$current_group_id"/>
+                    <input type="hidden" name="sort_list" value=""/>
+                    <button class="btn update_position" name="btn_update_position" $:style>
+                   Save Scripts Order 
+                </button>
+                </form>
+            </th>
+        </tr>
+    </thead>
+    <tbody id="sortable">
+
+$ scripts_list_length = len(args["scripts_list"])
+
+$for i in range(scripts_list_length) :
+    $ script = args["scripts_list"][i]
+    <tr>
+        <td>$(i+1)
+            <input type="hidden" name="select_script_id" value=$script.id />
+        </td>
+        <td>$script.name</td>
+        <td>$script.desc</td>
+        <td>
+            $for script_group in script.groups :
+            $script_group.name ,
+        </td>
+        <td>
+            <div class="btn-group">
+                <a href="/edit_script?category=script&script_id=$script.id&current_group_id=$current_group_id" class="btn">
+                    Edit
+                </a>
+                <a href="/deletescript?category=script&script_id=$script.id&current_group_id=$current_group_id" class="btn">
+                    Delete
+                </a>
+                <a href="/removescript?category=script&script_id=$script.id&group_id=$current_group_id&current_group_id=$current_group_id" class="btn" $:style>
+                    Remove
+                </a>
+
+                <button class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+                    Add to Group...
+                    <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu">
+                    $for group in args["group_list"] :
+                        <li>
+                        <a href="/addscript2group?category=script&script_id=$script.id&group_id=$group.id&current_group_id=$current_group_id">$group.name</a>
+                        </li>
+                </ul>
+            </div>
+        </td>
+    </tr>    
+</tbody>
+</table>

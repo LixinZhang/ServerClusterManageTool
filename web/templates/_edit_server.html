@@ -1,0 +1,41 @@
+$def with (args = None)
+$:args["result"]
+<form class="bs-docs-example form-horizontal" method="POST" action="/update_server">
+            <legend>Edit Server</legend>
+            <div class="control-group">
+              <label class="control-label" for="user_name">Login Username</label>
+              <div class="controls">
+                <input type="text" id="user_name" name="user_name" value="$args['server'].username" >
+              </div>
+            </div>
+            <div class="control-group">
+              <label class="control-label" for="user_password">Login Password</label>
+              <div class="controls">
+                <input type="password" id="user_password" name="user_password" value=$args["server"].password >
+              </div>
+            </div>
+            <div class="control-group">
+              <label class="control-label" for="host_address">Host Address</label>
+              <div class="controls">
+                <input type="text" id="host_addresss" name="host_address" value=$args["server"].host_address>
+              </div>
+            </div>
+            <div class="control-group">
+              <label class="control-label" for="host_port">Ssh Port</label>
+              <div class="controls">
+                <input type="text" id="host_port" name="host_port" placeholder="22" value=$args["server"].host_port >
+              </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label" for="script_path">Default Script Location</label>
+              <div class="controls">
+                <input type="text" id="script_path" name="script_path" value=$args["server"].script_location >
+              </div>
+            </div>
+            <div class="control-group">
+                <div class="controls">
+                    <input type="hidden" name="server_id" value=$args["server"].id />
+                <button type="submit" class="btn btn-primary">Update</button>
+              </div>
+            </div>
+</form>

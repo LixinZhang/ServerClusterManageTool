@@ -1,0 +1,64 @@
+$def with(content)
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+    <title>Server cluster management platform based on Scripts</title>
+    <link href="static/css/bootstrap.min.css" rel="stylesheet">
+    <link href="statis/css/jquery-ui.css" rel="stylesheet">
+    <script src="static/js/jQuery.min.js"></script>
+    <script src="static/js/bootstrap.min.js"></script>
+    <script src="static/js/helper.js"></script>
+    <script src="static/js/jquery-ui.min.js"></script>
+    <script text="text/javascript">
+        $$("#sortable").sortable();
+    </script>
+
+  </head>
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top" >
+      <div class="navbar-inner">
+        <div class="container-fluid">
+          <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </a>
+          <a class="brand" href="#">Server cluster management platform based on Scripts</a>
+          <div class="nav-collapse collapse">
+            <p class="navbar-text pull-right">
+              Contact me <a href="#" class="navbar-link">zhanglixinseu@gmail.com</a>
+            </p>
+            <ul class="nav">
+              <li><a href="/">About</a></li>
+            </ul>
+          </div><!--/.nav-collapse -->
+        </div>
+      </div>
+    </div>
+    <div class="container-fluid" style="margin:60px 10px 10px 10px ">
+      <div class="row-fluid">
+        <div class="span3">
+          <div class="well sidebar-nav">
+            <ul class="nav nav-list">
+              <li class="nav-header">Servers</li>
+              <li id="add_server"><a href="/add_server" >Create Server(Group)</a></li>
+              <li id="manage_server"><a href="/manage_server">Servers Management</a></li>
+              <li class="nav-header">Scripts</li>
+              <li id="add_script"><a href="/add_script">Create Script(Group)</a></li>
+              <li id="manage_script"><a href="/manage_script">Scripts Management</a></li>
+              <li class="nav-header">Running</li>
+              <li id="manage_task"><a href="/manage_task">Running Management</a></li>
+            </ul>
+          </div><!--/.well -->
+        </div><!--/span-->
+        <div class="span9">
+        $:content
+       </div><!--/span-->
+    </div><!--/row-->
+      <hr>
+      <footer>
+      </footer>
+    </div><!--/.fluid-container-->
+</body>
+</html>

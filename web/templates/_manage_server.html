@@ -1,0 +1,86 @@
+$def with (args = None )
+<div id="navbar-example" class="navbar navbar-static">
+              <div class="navbar-inner">
+                <div class="container" style="width: auto;">
+                    <a class="brand" >Server Group:
+                        $if args["group"] != None :
+                            $args["group"]["val"].name
+                        $else :
+                            All Servers
+                        </a>
+                  <ul class="nav pull-right">
+                    <li id="fat-menu" class="dropdown">
+                      <a href="#" id="drop3" role="button" class="dropdown-toggle" data-toggle="dropdown">Choose Group<b class="caret"></b></a>
+                      <ul class="dropdown-menu" role="menu" aria-labelledby="drop3">
+                        $for group in args["group_list"] :  
+                            <li><a tabindex="-1"  href="/manage_server?group_id=$group.id">$group.name</a></li>
+                        <li class="divider"></li>
+                        <li><a tabindex="-1" href="/manage_server?group_id=0">All</a></li>
+                      </ul>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+</div>
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>Host Address</th>
+            <th>Ssh Port</th>
+            <th>Login Username</th>
+            <th>Login Password</th>
+            <th>Default Script Location</th>
+            <th>Containing Groups</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+$ current_group_id = 0
+$if args["group"]!= None :
+    $ current_group_id = args["group"]["val"].id
+$ style = ""
+$if current_group_id == None or current_group_id == 0 :
+    $ style = "style='display:none'"
+$ servers_list_length = len(args["servers_list"])
+$for i in range(servers_list_length) :
+    $ server = args["servers_list"][i]
+    <tr>
+        <td>${i+1}</td>
+        <td>$server.host_address</td>
+        <td>$server.host_port</td>
+        <td>$server.username</td>
+        <td>$server.password</td>
+        <td>$server.script_location</td>
+        <td>
+            $for server_group in server.groups :
+            $server_group.name ,
+        </td>
+        <td>
+            <div class="btn-group">
+                <a href="/edit_server?category=server&server_id=$server.id&current_group_id=$current_group_id" class="btn">
+                   Edit 
+                </a>
+                <a href="/deleteserver?category=server&server_id=$server.id&current_group_id=$current_group_id" class="btn">
+                    Delete
+                </a>
+               <a href="/removeserver?category=server&server_id=$server.id&group_id=$current_group_id" class="btn" $:style>
+                    Remove
+                </a>
+
+                <button class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+                   Add to Group...
+                    <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu">
+                    $for group in args["group_list"] :
+                    <li>
+                        <a href="/addserver2group?category=server&server_id=$server.id&group_id=$group.id&current_group_id=$current_group_id">$group.name</a>
+                    </li>
+                </ul>
+            </div>
+        </td>
+ 
+    </tr>    
+    </tbody>
+</table>

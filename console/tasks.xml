@@ -1,0 +1,22 @@
+<task>
+    <servers>
+        <server>
+            <remote_user>zhanglixin</remote_user>
+            <password>peterbbs</password>
+            <remote_host>192.168.198.201</remote_host>
+            <remote_port>22</remote_port>
+            <remote_path>/home/zhanglixin/filedir/</remote_path>
+        </server>
+        <server>
+            <remote_user>zhanglixin</remote_user>
+            <password>peterbbs</password>
+            <remote_host>192.168.198.201</remote_host>
+            <remote_port>22</remote_port>
+            <remote_path>/home/zhanglixin/newtemp/</remote_path>
+        </server>
+    </servers>
+    <scripts>
+        <script_path>/home/mayday/workspace/zhanglixin/test.py</script_path>
+        <script_path>/home/mayday/workspace/zhanglixin/demo.py</script_path>
+    </scripts>
+</task>

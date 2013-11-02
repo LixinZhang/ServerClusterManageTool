@@ -1,0 +1,88 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+<HEAD>
+	<META HTTP-EQUIV="CONTENT-TYPE" CONTENT="text/html; charset=utf-8">
+	<TITLE></TITLE>
+	<META NAME="GENERATOR" CONTENT="OpenOffice.org 3.2  (Linux)">
+	<META NAME="AUTHOR" CONTENT="mayday">
+	<META NAME="CREATED" CONTENT="20121008;4130000">
+	<META NAME="CHANGEDBY" CONTENT="mayday">
+	<META NAME="CHANGED" CONTENT="20121008;11220000">
+	<META NAME="AppVersion" CONTENT="14.0000">
+	<META NAME="DocSecurity" CONTENT="0">
+	<META NAME="HyperlinksChanged" CONTENT="false">
+	<META NAME="LinksUpToDate" CONTENT="false">
+	<META NAME="ScaleCrop" CONTENT="false">
+	<META NAME="ShareDoc" CONTENT="false">
+	<STYLE TYPE="text/css">
+	<!--
+		@page { size: 8.27in 11.69in; margin-left: 1.25in; margin-right: 1.25in; margin-top: 1in; margin-bottom: 1in }
+		P { margin-bottom: 0.08in; direction: ltr; color: #000000; text-align: justify; widows: 2; orphans: 2 }
+		H4 { margin-top: 0.19in; margin-bottom: 0.2in; direction: ltr; color: #000000; line-height: 156%; text-align: justify; widows: 2; orphans: 2 }
+		H4.western { font-family: "Cambria", serif; font-size: 14pt }
+		H4.cjk { font-family: "DejaVu Sans"; font-size: 14pt }
+		H4.ctl { font-family: ; font-size: 14pt }
+	-->
+	</STYLE>
+</HEAD>
+<BODY LANG="en-US" TEXT="#000000" DIR="LTR">
+<P ALIGN=CENTER STYLE="margin-bottom: 0in"><FONT FACE="DejaVu Sans"><SPAN LANG="zh-CN"><FONT SIZE=5><B>基于脚本的服务器集群管理平台</B></FONT></SPAN></FONT></P>
+<H4 CLASS="western"><FONT FACE="DejaVu Sans"><SPAN LANG="zh-CN">背景：</SPAN></FONT></H4>
+<P STYLE="margin-bottom: 0in">	<FONT FACE="DejaVu Sans"><SPAN LANG="zh-CN">随着云计算服务的普及，基于云计算的</SPAN></FONT>PaaS<FONT FACE="DejaVu Sans"><SPAN LANG="zh-CN">、</SPAN></FONT>IaaS<FONT FACE="DejaVu Sans"><SPAN LANG="zh-CN">受到越来越多的关注，使用这些服务的用户也越来越多。对于一些大型的应用而言，可能包含多种服务，而这些服务需要部署在多台服务器上。例如：某个应用可能部署了</SPAN></FONT>10<FONT FACE="DejaVu Sans"><SPAN LANG="zh-CN">台数据库服务器，</SPAN></FONT>10<FONT FACE="DejaVu Sans"><SPAN LANG="zh-CN">台</SPAN></FONT>Web
+Http<FONT FACE="DejaVu Sans"><SPAN LANG="zh-CN">服务器以及</SPAN></FONT>5<FONT FACE="DejaVu Sans"><SPAN LANG="zh-CN">台静态文件存储服务器等。那么作为应用程序管理员来说，一台一台地登录去管理这些机器显得非常繁琐，而且对于同一种服务（比如数据库服务）的机器需要执行的管理任务又都大致相同，那么对每台机器进行重复的工作也会增加集群管理员的负担。</SPAN></FONT></P>
+<P STYLE="margin-bottom: 0in">	<FONT FACE="DejaVu Sans"><SPAN LANG="zh-CN">应对上述需求场景，我们开发了这样一个基于脚本的服务器集群管理平台，它主要具有如下功能和优点：</SPAN></FONT></P>
+<OL>
+	<LI><P STYLE="margin-bottom: 0in"><FONT FACE="DejaVu Sans"><SPAN LANG="zh-CN">针对不同应用场景，对服务器进行高效的分组管理。</SPAN></FONT></P>
+	<LI><P STYLE="margin-bottom: 0in"><FONT FACE="DejaVu Sans"><SPAN LANG="zh-CN">以可执行脚本作为子任务，可以自定义脚本内容，具有高度灵活性。以多个脚本组成的有序组序列作为可执行任务单元。脚本可分组，同组内可排序，有效组织和管理。</SPAN></FONT></P>
+	<LI><P STYLE="margin-bottom: 0in"><FONT FACE="DejaVu Sans"><SPAN LANG="zh-CN">针对不同需求，创建“服务器组</SPAN></FONT>&lt;-&gt;<FONT FACE="DejaVu Sans"><SPAN LANG="zh-CN">脚本组”的执行任务。随时启动该任务，便可下达对该服务器组的基于脚本序列的任务执行命令。</SPAN></FONT></P>
+	<LI><P STYLE="margin-bottom: 0in"><FONT FACE="DejaVu Sans"><SPAN LANG="zh-CN">提供对“服务器组</SPAN></FONT>&lt;-&gt;<FONT FACE="DejaVu Sans"><SPAN LANG="zh-CN">脚本组”的执行任务的运行状态查询，便于监控。可以查看远程服务器控制台的输出显示，当前运行状态，执行到哪个脚本，哪个脚本有异常等等信息。</SPAN></FONT></P>
+</OL>
+<H4 CLASS="western"><FONT FACE="DejaVu Sans"><SPAN LANG="zh-CN">应用场景举例：</SPAN></FONT></H4>
+<P STYLE="margin-bottom: 0in">	<FONT FACE="DejaVu Sans"><SPAN LANG="zh-CN">假如我想为我的</SPAN></FONT>10<FONT FACE="DejaVu Sans"><SPAN LANG="zh-CN">台机器同时安装</SPAN></FONT>LAMP<FONT FACE="DejaVu Sans"><SPAN LANG="zh-CN">。那么首先我们建立一个服务器组</SPAN></FONT>server_group<FONT FACE="DejaVu Sans"><SPAN LANG="zh-CN">，并将这</SPAN></FONT>10<FONT FACE="DejaVu Sans"><SPAN LANG="zh-CN">台机器加入到该组中。接下来，我们创建三个脚本，分别为</SPAN></FONT>Setup_Apache<FONT FACE="DejaVu Sans"><SPAN LANG="zh-CN">，</SPAN></FONT>Setup_Mysql<FONT FACE="DejaVu Sans"><SPAN LANG="zh-CN">，</SPAN></FONT>Setup_PHP<FONT FACE="DejaVu Sans"><SPAN LANG="zh-CN">，然后我们再创建一个脚本组，命名为</SPAN></FONT>LAMP_Group<FONT FACE="DejaVu Sans"><SPAN LANG="zh-CN">，并将前面的三个脚本添加到该组来，并在组内排好顺序（针对有执行顺序要求的任务）。最后，我们创建一个可执行任务</SPAN></FONT>&lt;server_group
+, LAMP_Group&gt;<FONT FACE="DejaVu Sans"><SPAN LANG="zh-CN">并执行，再状态查询页面中监控该任务的在不同服务器上的个脚本执行情况。</SPAN></FONT></P>
+<P STYLE="margin-bottom: 0in">	<FONT FACE="DejaVu Sans"><SPAN LANG="zh-CN">过一段时间，我又想为另一个服务器组安装某些服务，也需要使用到</SPAN></FONT>Mysql
+<FONT FACE="DejaVu Sans"><SPAN LANG="zh-CN">，那么就可以将之前创建的</SPAN></FONT>Setup_Mysql<FONT FACE="DejaVu Sans"><SPAN LANG="zh-CN">脚本复用添加，再增加一些其他需要的脚本，生成新的脚本组。</SPAN></FONT></P>
+<P STYLE="text-indent: 0.29in; margin-bottom: 0in"><FONT FACE="DejaVu Sans"><SPAN LANG="zh-CN">或是，我突然想查看集群上的某个日志文件，那么编写一个将日志文件内容打印到控制台的脚本，对该集群执行该脚本，再通过监控页面得到远程主机的控制台输出结果，方便查看。</SPAN></FONT></P>
+<H4 CLASS="western"><FONT FACE="DejaVu Sans"><SPAN LANG="zh-CN">技术实现过程中的关键点：</SPAN></FONT></H4>
+<P STYLE="margin-bottom: 0in">1<FONT FACE="DejaVu Sans"><SPAN LANG="zh-CN">、如何将脚本文件拷贝到远程主机上；</SPAN></FONT></P>
+<P STYLE="margin-bottom: 0in">    
+<FONT FACE="DejaVu Sans"><SPAN LANG="zh-CN">基于</SPAN></FONT>pexpect<FONT FACE="DejaVu Sans"><SPAN LANG="zh-CN">，使用</SPAN></FONT>scp<FONT FACE="DejaVu Sans"><SPAN LANG="zh-CN">命令，进行脚本文件的远程拷贝，因为</SPAN></FONT>scp<FONT FACE="DejaVu Sans"><SPAN LANG="zh-CN">是成熟的命令，可以确保文件的完整性与安全性。</SPAN></FONT></P>
+<P STYLE="margin-bottom: 0in"><BR>
+</P>
+<P STYLE="margin-bottom: 0in">2<FONT FACE="DejaVu Sans"><SPAN LANG="zh-CN">、如何触发远程主机上脚本的执行；</SPAN></FONT></P>
+<P STYLE="margin-bottom: 0in">    
+<FONT FACE="DejaVu Sans"><SPAN LANG="zh-CN">触发脚本执行功能使用的</SPAN></FONT>pexpect<FONT FACE="DejaVu Sans"><SPAN LANG="zh-CN">提供的</SPAN></FONT>pxssh<FONT FACE="DejaVu Sans"><SPAN LANG="zh-CN">模块，该模块式是对</SPAN></FONT>pexpect<FONT FACE="DejaVu Sans"><SPAN LANG="zh-CN">核心模块的进一步封装，并用于实现基于</SPAN></FONT>ssh<FONT FACE="DejaVu Sans"><SPAN LANG="zh-CN">方式通信的交互模块。由于，脚本的执行效果与耗时都是无法预知的，客户端触发脚本执行命令后不可能一直等待这些脚本进程结束。因此，在下达执行命令后，客户端应该立即结束自身，而执行脚本应该把运行过程中产生的输出内容重定向写入到某个日志文件中，客户端获取该文件得到输出结果。</SPAN></FONT></P>
+<P STYLE="margin-bottom: 0in">	<FONT FACE="DejaVu Sans"><SPAN LANG="zh-CN">由于主要耗时在网络通信，因此对多台主机采用多线程的方式进行处理。</SPAN></FONT></P>
+<P STYLE="margin-bottom: 0in"><BR>
+</P>
+<P STYLE="margin-bottom: 0in">3<FONT FACE="DejaVu Sans"><SPAN LANG="zh-CN">、如何获取脚本的运行状态与执行结果。</SPAN></FONT></P>
+<P STYLE="margin-bottom: 0in">    
+<FONT FACE="DejaVu Sans"><SPAN LANG="zh-CN">有一些重要的问题需要考虑：客户端如何获知这些脚本的执行是否已经结束了？它们是正常结束的，还是出错挂掉的？以及当前正在运行的是哪个脚本文件？
+因此，我们需要获取这些脚本执行进程的状态。在</SPAN></FONT>linux<FONT FACE="DejaVu Sans"><SPAN LANG="zh-CN">上，一般用</SPAN></FONT>ps<FONT FACE="DejaVu Sans"><SPAN LANG="zh-CN">命令进行进程状态的查看，使用</SPAN></FONT>grep<FONT FACE="DejaVu Sans"><SPAN LANG="zh-CN">可以进行内容的筛选。在这里，我们利用某种标识串对每个脚本进行标识，这样使用“</SPAN></FONT>ps
+-aux | grep
+<FONT FACE="DejaVu Sans"><SPAN LANG="zh-CN">标识串”命令就可以查看该执行脚本的进程状态了。为了判断脚本文件执行是否是正常退出的，我们在按序执行这些脚本后在日志文件结尾插入一个标识串。如果日志文件中，存有该标志串则证明是正常结束的，否则可能仍在执行或是发生了某些错误。程序里，使用了一些小技巧。</SPAN></FONT></P>
+<H4 CLASS="western"><FONT FACE="DejaVu Sans"><SPAN LANG="zh-CN">技术实现：</SPAN></FONT></H4>
+<P STYLE="text-indent: 0.29in; margin-bottom: 0in"><FONT FACE="DejaVu Sans"><SPAN LANG="zh-CN">使用到技术及模块：</SPAN></FONT>python2.6
+<FONT FACE="DejaVu Sans"><SPAN LANG="zh-CN">，</SPAN></FONT>pexpect
+<FONT FACE="DejaVu Sans"><SPAN LANG="zh-CN">，</SPAN></FONT>web.py<FONT FACE="DejaVu Sans"><SPAN LANG="zh-CN">（轻量级</SPAN></FONT>web<FONT FACE="DejaVu Sans"><SPAN LANG="zh-CN">框架）
+， </SPAN></FONT>sqlalchemy<FONT FACE="DejaVu Sans"><SPAN LANG="zh-CN">（</SPAN></FONT>ORM<FONT FACE="DejaVu Sans"><SPAN LANG="zh-CN">）
+， </SPAN></FONT>mysql <FONT FACE="DejaVu Sans"><SPAN LANG="zh-CN">，
+ </SPAN></FONT>jQuery <FONT FACE="DejaVu Sans"><SPAN LANG="zh-CN">，
+</SPAN></FONT>Twitter Bootstrap<FONT FACE="DejaVu Sans"><SPAN LANG="zh-CN">。</SPAN></FONT></P>
+<P STYLE="text-indent: 0.29in; margin-bottom: 0in"><BR>
+</P>
+<H4 CLASS="western"><FONT FACE="DejaVu Sans"><SPAN LANG="zh-CN">一些说明：</SPAN></FONT></H4>
+<P STYLE="margin-bottom: 0in">	1<FONT FACE="DejaVu Sans"><SPAN LANG="zh-CN">、被管理的</SPAN></FONT>server<FONT FACE="DejaVu Sans"><SPAN LANG="zh-CN">需为</SPAN></FONT>unix<FONT FACE="DejaVu Sans"><SPAN LANG="zh-CN">（</SPAN></FONT>linux<FONT FACE="DejaVu Sans"><SPAN LANG="zh-CN">）系统，且装有</SPAN></FONT>ssh
+server<FONT FACE="DejaVu Sans"><SPAN LANG="zh-CN">（即可以</SPAN></FONT>ssh<FONT FACE="DejaVu Sans"><SPAN LANG="zh-CN">远程登录）。</SPAN></FONT></P>
+<P STYLE="margin-bottom: 0in">	2<FONT FACE="DejaVu Sans"><SPAN LANG="zh-CN">、脚本头部请填写类似“</SPAN></FONT>#!/usr/bin/python”<FONT FACE="DejaVu Sans"><SPAN LANG="zh-CN">等说明，以确保其可以正常执行。</SPAN></FONT></P>
+<P STYLE="text-indent: 0.29in; margin-bottom: 0in">3<FONT FACE="DejaVu Sans"><SPAN LANG="zh-CN">、该项目目前只开发了一个大致的框架，由于课业压力较大，时间仓促，项目里一些细节的东西可能还需进一步完善。</SPAN></FONT></P>
+<P STYLE="text-indent: 0.29in; margin-bottom: 0in"><BR>
+</P>
+<P STYLE="text-indent: 0.29in; margin-bottom: 0in"><A NAME="_GoBack"></A>
+<FONT FACE="DejaVu Sans"><SPAN LANG="zh-CN"><B>个人信息：</B></SPAN></FONT></P>
+<P STYLE="text-indent: 0.29in; margin-bottom: 0in"><FONT FACE="DejaVu Sans"><SPAN LANG="zh-CN">姓名：张立鑫</SPAN></FONT></P>
+<P STYLE="text-indent: 0.29in; margin-bottom: 0in"><FONT FACE="DejaVu Sans"><SPAN LANG="zh-CN">学校：北京航空航天大学</SPAN></FONT></P>
+<P STYLE="text-indent: 0.29in; margin-bottom: 0in">Tel<FONT FACE="DejaVu Sans"><SPAN LANG="zh-CN">：</SPAN></FONT>13810774384</P>
+<P STYLE="text-indent: 0.29in; margin-bottom: 0in">Email<FONT FACE="DejaVu Sans"><SPAN LANG="zh-CN">：</SPAN></FONT>zhanglixinseu@gmail.com</P>
+</BODY>
+</HTML>

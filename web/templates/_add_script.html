@@ -1,0 +1,42 @@
+$def with (args = None)
+$:args["result"]
+<form class="bs-docs-example form-horizontal" method="post" action="/add_script">
+            <legend>Create Script</legend>
+            <div class="control-group">
+              <label class="control-label" for="script_name">Script Name</label>
+              <div class="controls">
+                  <input type="text" id="script_name" name="script_name">
+              </div>
+            </div>
+            <div class="control-group">
+              <label class="control-label" for="script_content">Script Content</label>
+              <div class="controls">
+                  <textarea id="script_content" style="width:400px;height:200px" name="script_content"></textarea>
+              </div>
+            </div>
+             <div class="control-group">
+              <label class="control-label" for="script_desc">Script Desctiption</label>
+              <div class="controls">
+                  <textarea id="script_desc" style="width:400px;height:100px" name="script_desc"></textarea>
+              </div>
+            </div>
+            <div class="control-group">
+              <div class="controls">
+                <button type="submit" class="btn btn-primary">Create</button>
+              </div>
+            </div>
+</form>
+<form class="bs-docs-example form-horizontal" method="post" action="add_script_group">
+            <legend>Create Script Group</legend>
+            <div class="control-group">
+              <label class="control-label" for="script_groupname">Group Name</label>
+              <div class="controls">
+                  <input type="text" id="script_groupname" name="script_groupname"></input>
+              </div>
+            </div>
+            <div class="control-group">
+              <div class="controls">
+                <button type="submit" class="btn btn-primary">Create</button>
+              </div>
+            </div>
+ </form>

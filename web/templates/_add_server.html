@@ -1,0 +1,54 @@
+$def with (args = None)
+$:args["result"]
+<form class="bs-docs-example form-horizontal" method="POST" action="/add_server">
+            <legend>Create Server</legend>
+            <div class="control-group">
+              <label class="control-label" for="user_name">Login Username</label>
+              <div class="controls">
+                <input type="text" id="user_name" name="user_name" >
+              </div>
+            </div>
+            <div class="control-group">
+              <label class="control-label" for="user_password">Login Password</label>
+              <div class="controls">
+                <input type="password" id="user_password" name="user_password" >
+              </div>
+            </div>
+            <div class="control-group">
+              <label class="control-label" for="host_address">Host Address</label>
+              <div class="controls">
+                <input type="text" id="host_addresss" name="host_address">
+              </div>
+            </div>
+            <div class="control-group">
+              <label class="control-label" for="host_port">Ssh Port</label>
+              <div class="controls">
+                <input type="text" id="host_port" name="host_port" placeholder="22">
+              </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label" for="script_path">Default Script Location</label>
+              <div class="controls">
+                <input type="text" id="script_path" name="script_path">
+              </div>
+            </div>
+            <div class="control-group">
+              <div class="controls">
+                <button type="submit" class="btn btn-primary">Create</button>
+              </div>
+            </div>
+</form>
+<form class="bs-docs-example form-horizontal" method="post" action="/add_server_group">
+            <legend>Create Server Group</legend>
+            <div class="control-group">
+              <label class="control-label" for="server_groupname">Group Name</label>
+              <div class="controls">
+                <input type="text" id="server_groupname" name="server_groupname" >
+              </div>
+            </div>
+            <div class="control-group">
+              <div class="controls">
+                <button type="submit" class="btn btn-primary">Create</button>
+              </div>
+            </div>
+ </form>

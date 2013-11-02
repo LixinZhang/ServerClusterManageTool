@@ -1,0 +1,130 @@
+$def with (args=None)
+    $:args["result"]
+        <form method="post" action="add_task" style="margin:0px 0px 0px 0px">
+			<legend>Tasks Management</legend>
+			<table>
+				<tr>
+					<td>
+						<div class="input-prepend">
+                            <span class="add-on">Task-name</span>
+                            <input  id="prependedInput" name="task_name" size="16" type="text" placeholder="Describe the task">
+						</div>
+					</td>
+					<td>
+						<div class="input-prepend">
+						<span class="add-on" style="width:85px">Server-Group</span>
+                        <select name="select_server_group">
+                            $for g in args["server_group_list"] :
+                                <option value=$g.id >
+                                $g.name</option> 
+                        </select>
+						</div>
+					</td>
+					<td>			
+						<div class="input-prepend">
+						<span class="add-on" style="width:85px">Script-Group</span>
+                        <select name="select_script_group">
+                            $for g in args["script_group_list"] :
+                                <option value=$g.id >$g.name</option>
+                        </select>
+						</div>
+					</td>
+					<td>			
+						<button class="btn btn-primary" style="margin:14px 10px 20px 10px ">Create New Task</button>
+					</td>
+				</tr>
+			</table>
+		</form>
+		<table class="table table-hover">
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>Task Name</th>
+                  <th>ServerGroup</th>
+                  <th>ScriptGroup</th>
+				  <th></th>
+				  <th></th>
+                </tr>
+              </thead>
+              <tbody>
+              $ index = 1
+              $for task in args["task_list"] :
+                $ tr_style = ""
+                $if task["task"]["id"] == args["current_task_id"] :
+                    $ tr_style = "class='success'" 
+                <tr $:tr_style>
+                    <td>$index</td>
+                    $ index = index + 1
+                  <td>$task["task"]["name"]</td>
+                  <td>
+                      <a href="/manage_server?group_id=$task["server_group"].id">$task["server_group"].name</a></td>
+                  <td><a href="/manage_script?group_id=$task["script_group"].id">$task["script_group"].name</a></td>
+				  <td>
+						  <form method="post" action="run_task" style="margin:0px 0px 0px 0px">
+						  <input type="hidden" name="task_id" value=$task["task"]["id"] />
+						  <button class="btn btn-primary">Run</button>
+						  </form>
+				  </td>
+				  <td>
+						  <form method="post" action="view_status" style="margin:0px 0px 0px 0px">
+						  <input type="hidden" name="task_id" value=$task["task"]["id"] />
+						  <button class="btn btn-primary">View Status</button>
+						  </form>
+                  </td>
+                  <td>
+						  <form method="post" action="delete_task" style="margin:0px 0px 0px 0px">
+						  <input type="hidden" name="task_id" value=$task["task"]["id"] />
+						  <button class="btn btn-primary">Delete Task</button>
+						  </form>
+				  </td>
+                </tr>
+              </tbody>
+            </table>
+		<legend>Running Status View</legend>
+			<table class="table table-hover table-bordered">
+              <thead>
+                <tr>
+				  <th rowspan="2">#</th>
+                  <th rowspan="2" class="text-info" style="text-align:center">User</th>
+                  <th rowspan="2" class="text-info" style="text-align:center">IP</th>
+                  <th colspan=$len(args["current_scripts"])  class="text-info" style="text-align:center">Scripts List</th>
+                  <th rowspan="2" class="text-info" style="text-align:center;width:200px" >Console Ouput</th>
+                  <th rowspan="2" class="text-info" style="text-align:center">Final Status</th>
+                </tr>
+                <tr>
+                    $for script in args["current_scripts"] :
+                        <th class="text-info">$script.name</th>
+            </tr>
+              </thead>
+              <tbody>
+                $ index = 1
+                $for status in args["status_list"] :
+                <tr>
+                <td>$index</td>
+                $ index = index + 1
+                <td>$status["username"]</td>
+                <td>$status["host_address"]</td>
+                    $for script_status in status["script_status"] :
+                        $if script_status == 0 :
+                            <td><span class="label label-success">Done</span></td>
+                        $elif script_status == 1:
+                            <td><span class="label label-info">Running</span></td>
+                        $elif script_status == -1 :
+                            <td><span class="label label-important">Exception</span></td>
+                        $else :
+                            <td><span class="label"</td>Ready</span></td>
+ 
+                <td>$status["console_output"]</td>
+                <td>
+                    $if status["final_status"] == -1:
+                        <span class="label label-important">Error</span>
+                    $elif status["final_status"] == 0 :
+                        <span class="label label-success">Complete</span>
+                    $elif status["final_status"] == -2 :
+                        <span class="label label-important">Server Error</span>
+                    $else :
+                        <span class="label label-info">Running</span>
+                        </td>
+                    </tr>
+              </tbody>
+            </table>

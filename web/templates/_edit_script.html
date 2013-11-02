@@ -1,0 +1,29 @@
+$def with (args = None)
+$:args["result"]
+<form class="bs-docs-example form-horizontal" method="post" action="/update_script">
+            <legend>Edit Script</legend>
+            <div class="control-group">
+              <label class="control-label" for="script_name">Script Name</label>
+              <div class="controls">
+                  <input type="text" id="script_name" name="script_name" value="$args['script'].name" >
+              </div>
+            </div>
+            <div class="control-group">
+              <label class="control-label" for="script_content">Script Content</label>
+              <div class="controls">
+                  <textarea id="script_content" style="width:400px;height:200px" name="script_content">$args["content"]</textarea>
+              </div>
+            </div>
+             <div class="control-group">
+              <label class="control-label" for="script_desc">Script Desctiption</label>
+              <div class="controls">
+                  <textarea id="script_desc" style="width:400px;height:100px" name="script_desc">$args["script"].desc</textarea>
+              </div>
+            </div>
+            <div class="control-group">
+                <div class="controls">
+                <input type="hidden" name="script_id" value=$args["script"].id />
+                <button type="submit" class="btn btn-primary">Update</button>
+              </div>
+            </div>
+</form>
